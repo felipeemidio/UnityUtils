@@ -963,6 +963,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LoadingCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1707268958702197468, guid: b0dcbe9758878ff4e8e2c49e3e8a8f31,
+        type: 3}
+      propertyPath: startOn
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1707268958702197469, guid: b0dcbe9758878ff4e8e2c49e3e8a8f31,
         type: 3}
       propertyPath: m_LocalPosition.x

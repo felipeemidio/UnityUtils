@@ -13,6 +13,7 @@ public class LoadingCanvas : MonoBehaviour
 
     bool isShowing;
     bool isAnimating;
+    bool isStarting;
     float alphaInit;
     float alphaFinal;
     float time;
@@ -24,11 +25,14 @@ public class LoadingCanvas : MonoBehaviour
     {
         canvasGroup = GetComponent<CanvasGroup>();
         isShowing = startOn;
+        isStarting = startOn;
         if (startOn)
         {
             canvasGroup.interactable = true;
             canvasGroup.blocksRaycasts = true;
             canvasGroup.alpha = 1;
+            StartCoroutine(HoldState());
+            StartCoroutine(DotAnimation());
         }
         else
         {
@@ -36,7 +40,12 @@ public class LoadingCanvas : MonoBehaviour
             canvasGroup.blocksRaycasts = false;
             canvasGroup.alpha = 0;
         }
-            
+    }
+
+    public IEnumerator HoldState()
+    {
+        yield return new WaitForSeconds(2);
+        isStarting = false;
     }
 
     private void Update()
@@ -58,7 +67,7 @@ public class LoadingCanvas : MonoBehaviour
 
     public void Show()
     {
-        if (isShowing)
+        if (isShowing || isStarting)
         {
             return;
         }
@@ -77,7 +86,7 @@ public class LoadingCanvas : MonoBehaviour
 
     public void Hide()
     {
-        if (!isShowing)
+        if (!isShowing || isStarting)
         {
             return;
         }
